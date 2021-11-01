@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import axios from 'axios';
+import EmployeeService from '../services/EmployeeService'
 class EmployeeList extends Component {
 
 constructor(props) {
@@ -61,7 +61,7 @@ render() {
 
 
 getEmployees(){
-        return axios.get("http://localhost:8080/employees");
+        return EmployeeService.getEmployees();
     }
 
 addEmployee(){
@@ -87,7 +87,7 @@ editEmployee(id){
 
     }
     deleteAndRedirect(id){
-        return axios.delete("http://localhost:8080/employee/"+id);
+        return EmployeeService.deleteEmployee(id);
     }
 }
 export default EmployeeList;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import axios from 'axios';
+import EmployeeService from '../services/EmployeeService'
 class AddEmployee extends Component {
 
 constructor(props) {
@@ -19,7 +19,7 @@ constructor(props) {
         if(this.state.id === '_add'){
             return
         }else{
-            this.getEmployeeById(this.state.id).then( (res) =>{
+            EmployeeService.getEmployeeById(this.state.id).then( (res) =>{
                 let employee = res.data;
                 this.setState({empName: employee.empName,
                     empDesignation: employee.empDesignation,
@@ -84,7 +84,7 @@ cancel(){
 
 saveOrUpdateEmployee = (e) => {
         e.preventDefault();
-        let employee = {empName: this.state.empName, empDesignation: this.state.empDesignation, empEmail: this.state.empEmail};
+        let employee = {empId:this.state.id, empName: this.state.empName, empDesignation: this.state.empDesignation, empEmail: this.state.empEmail};
         console.log('employee => ' + JSON.stringify(employee));
 
         // step 5
@@ -93,17 +93,17 @@ saveOrUpdateEmployee = (e) => {
                 this.props.history.push('/');
             });
         }else{
-            this.updateEmployee(employee, this.state.id).then( res => {
+            this.updateEmployee(employee).then( res => {
                 this.props.history.push('/');
             });
         }
     }
 
-createEmployee(employee){
-        return axios.post("http://localhost:8080/employee/", employee);
+createEmployee(employee){ 
+        return EmployeeService.createEmployee(employee);
     }
 updateEmployee(employee){
-     return axios.post("http://localhost:8080/employee/", employee);
+     return EmployeeService.updateEmployee(employee);
 }
 
 changeEmpNameHandler= (event) => {

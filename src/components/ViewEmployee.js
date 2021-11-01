@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import EmployeeService from '../services/EmployeeService'
 
 class ViewEmployee extends Component {
     constructor(props) {
@@ -13,7 +14,7 @@ class ViewEmployee extends Component {
 
 
 getEmployeeById(employeeId){
-    return axios.get('http://localhost:8080/employee/' + employeeId);
+    return EmployeeService.getEmployeeById(employeeId);
 }
 
 componentDidMount(){
