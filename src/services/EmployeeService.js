@@ -4,8 +4,6 @@ const EMPLOYEE_API_BASE_URL= process.env.REACT_APP_API_URL;
 
 class EmployeeService {
 
-   constructor(){}
-
     getEmployees(){
         return axios.get(EMPLOYEE_API_BASE_URL+ 'employees');
     }
@@ -18,8 +16,8 @@ class EmployeeService {
         return axios.get(EMPLOYEE_API_BASE_URL + 'employee/' + employeeId);
     }
 
-    updateEmployee(employee){
-        return axios.put(EMPLOYEE_API_BASE_URL + 'employee/', employee);
+    updateEmployee(employee, employeeId){
+        return axios.put(EMPLOYEE_API_BASE_URL + 'employee/'+ employeeId, employee);
     }
 
     deleteEmployee(employeeId){

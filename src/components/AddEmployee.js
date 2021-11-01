@@ -84,16 +84,14 @@ cancel(){
 
 saveOrUpdateEmployee = (e) => {
         e.preventDefault();
-        let employee = {empId:this.state.id, empName: this.state.empName, empDesignation: this.state.empDesignation, empEmail: this.state.empEmail};
-        console.log('employee => ' + JSON.stringify(employee));
+        let employee = {empName: this.state.empName, empDesignation: this.state.empDesignation, empEmail: this.state.empEmail};
 
-        // step 5
         if(this.state.id === '_add'){
             this.createEmployee(employee).then(res =>{
                 this.props.history.push('/');
             });
         }else{
-            this.updateEmployee(employee).then( res => {
+            this.updateEmployee(employee, this.state.id).then( res => {
                 this.props.history.push('/');
             });
         }
@@ -102,8 +100,8 @@ saveOrUpdateEmployee = (e) => {
 createEmployee(employee){ 
         return EmployeeService.createEmployee(employee);
     }
-updateEmployee(employee){
-     return EmployeeService.updateEmployee(employee);
+updateEmployee(employee, employeeId){
+     return EmployeeService.updateEmployee(employee, employeeId);
 }
 
 changeEmpNameHandler= (event) => {

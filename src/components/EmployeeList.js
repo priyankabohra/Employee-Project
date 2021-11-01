@@ -28,33 +28,33 @@ render() {
                     <button className="btn btn-primary" onClick={this.addEmployee}> Add Employee</button>
                  </div>
                     <table class="table" id="employeeList">
-                                        <thead class="thead-dark">
-                                        <tr class="intro style">
-                                            <th scope="col">Full Name</th>
-                                            <th scope="col">Email Id</th>
-                                            <th scope="col">Designation</th>
-                                            <th scope="col">Action</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
+                        <thead class="thead-dark">
+                        <tr class="intro style">
+                            <th scope="col">Full Name</th>
+                            <th scope="col">Email Id</th>
+                            <th scope="col">Designation</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
 {
 
-                                    this.state.employees.map(
-                                        employee =>
-                                        <tr key = {employee.empId}>
-                                             <td> { employee.empName} </td>
-                                             <td> {employee.empEmail}</td>
-                                             <td> {employee.empDesignation}</td>
-                                             <td>
-                                                 <button onClick={ () => this.editEmployee(employee.empId)} className="btn btn-info">Update </button>
-                                                 <button style={{marginLeft: "10px"}} onClick={ () => this.deleteEmployee(employee.empId)} className="btn btn-danger">Delete </button>
-                                                 <button style={{marginLeft: "10px"}} onClick={ () => this.viewEmployee(employee.empId)} className="btn btn-info">View </button>
-                                             </td>
-                                        </tr>
-                                    )
-                                }
-                                        </tbody>
-                                    </table>
+                        this.state.employees.map(
+                            employee =>
+                            <tr key = {employee.empId}>
+                                 <td> { employee.empName} </td>
+                                 <td> {employee.empEmail}</td>
+                                 <td> {employee.empDesignation}</td>
+                                 <td>
+                                     <button onClick={ () => this.editEmployee(employee.empId)} className="btn btn-info">Update </button>
+                                     <button style={{marginLeft: "10px"}} onClick={ () => this.viewEmployee(employee.empId)} className="btn btn-info">View </button>
+                                     <button style={{marginLeft: "10px"}} onClick={ () => this.deleteEmployee(employee.empId)} className="btn btn-danger">Delete </button>
+                                 </td>
+                            </tr>
+                        )
+                    }
+                    </tbody>
+                  </table>
                   </header>
                 </div>);
   }
