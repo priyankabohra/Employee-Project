@@ -21,15 +21,19 @@ componentDidMount(){
     }
 
 render() {
-            return (<div className="App">
-                  <header className="App-header">
+            return (
+            <div>
+
                     <h1>EmployeeList</h1>
                 <div className = "row">
                     <button className="btn btn-primary" onClick={this.addEmployee}> Add Employee</button>
                  </div>
-                    <table class="table" id="employeeList">
-                        <thead class="thead-dark">
-                        <tr class="intro style">
+                 <br></br>
+                                  <div className = "row">
+                                 <table className = "table table-striped table-bordered">
+
+                        <thead>
+                        <tr>
                             <th scope="col">Full Name</th>
                             <th scope="col">Email Id</th>
                             <th scope="col">Designation</th>
@@ -55,12 +59,15 @@ render() {
                     }
                     </tbody>
                   </table>
-                  </header>
-                </div>);
+
+                </div>
+                 </div> );
   }
 
 
-getEmployees(){
+
+getEmployees()
+{
         return EmployeeService.getEmployees();
     }
 
@@ -76,18 +83,10 @@ editEmployee(id){
         this.props.history.push(`/add-employee/${id}`);
 }
     deleteEmployee(id){
-
-    this.deleteAndRedirect(id).then((res) => {
-               if(res.status===200){
-                   window.location.reload();
-               }else{
-                    alert("Not Deleted")
-               }
+            EmployeeService.deleteEmployee(id).then( res => {
+                this.setState({employees: this.state.employees.filter(employee => employee.empId !== id)});
             });
+        }
 
-    }
-    deleteAndRedirect(id){
-        return EmployeeService.deleteEmployee(id);
-    }
 }
 export default EmployeeList;

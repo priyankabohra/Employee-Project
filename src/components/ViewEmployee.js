@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react'
 import EmployeeService from '../services/EmployeeService'
 
@@ -12,45 +13,68 @@ class ViewEmployee extends Component {
     }
 
 
-getEmployeeById(employeeId){
-    return EmployeeService.getEmployeeById(employeeId);
-}
 
 componentDidMount(){
-        this.getEmployeeById(this.state.id).then( res => {
-            this.setState({employee: res.data});
+        EmployeeService.getEmployeeById(this.state.id).then( res => {
+                    this.setState({employee: res.data});
+
         })
     }
+    cancel(){
+           this.props.history.push('/employees');
+       }
+   render() {
+    return (
+             <div>
+            <br></br>
 
- render(){
-    return(
-              <div>
-               <br></br>
-               <div className = "card col-md-6 offset-md-3">
-                   <h3 className = "text-center data"> View Employee Details</h3>
-                   <div className = "card-body">
-                       <div className = "style color">
-                           <label> Employee Name </label>
-                    <input placeholder="Employee Name" name="empName" className="form-control"
-                    value={ this.state.employee.empName }onChange={this.changeEmpNameHandler}/>
+                 <div className = "card col-md-6 offset-md-3">
+
+                     <h3 className = "text-center"> View Employee Details</h3>
+                     <div className = "card-body">
 
 
-                       </div>
-                       <div className = "row style color">
-                           <label> Employee Email ID </label>
-                            <input placeholder="Employee Email ID " name="empEmail" className="form-control"
-                           value= { this.state.employee.empEmail }onchange={this.changeEmpEmail}/>
-                       </div>
 
-                       <div className = "row style color">
-                           <label> Employee Designation </label>
-                           <input placeholder="Employee Designation " name="empDesignation" className="form-control"
-                           value={ this.state.employee.empDesignation }onchange={this.changeEmpDesignation}/>
-                       </div>
-                   </div>
-                   </div>
-               </div>)
- }
+                     <form>
+                         <div className = "row">
 
+                       <label> Employee Name : { this.state.employee.empName }
+                           </label>
+                          </div>
+
+                        <div className = "row">
+
+                            <label> Employee Email ID : { this.state.employee.empEmail }
+                            </label>
+                              </div>
+
+
+
+
+                     <div className = "row">
+
+                           <label> Employee Designation : { this.state.employee.empDesignation }
+                           </label>
+                         </div>
+                                </form>
+
+
+
+
+                </div>
+                <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{marginLeft: "0.5px"}}>Cancel</button>
+                  </div>
+                 </div>
+                   )
+                   }
 }
+
 export default ViewEmployee;
+
+
+
+
+
+
+
+
