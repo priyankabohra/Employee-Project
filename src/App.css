@@ -1,12 +1,8 @@
-.data{
-color:Red;
-}
-
-.style{
-text: red;
-
-}
-
-.color{
-background-color: sky-blue;
+.header{
+   background: #0fcaf0;
+   text-align: center;
+   height: 45px;
+   margin-bottom: 30px;
+   font-size: 25px;
+   font-weight: bold;
 }
